@@ -1,47 +1,33 @@
 import React from 'react';
 import PropTypes from "prop-types";
 
-const foodILike = [
-  {
-    id:1,
-    name : "kimchi",
-    image:"http://image.auction.co.kr/itemimage/19/b9/2f/19b92f7766.jpg",
-    rating : 5
-  },
-  {
-    id:2,
-    name : "KimBap",
-    image:"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2F60ANBnHjiDU%2Fmaxresdefault.jpg&f=1&nofb=1",
-    rating : 4.7
-  }
-]
+// state class component를 사용해야된다
+class App extends React.Component{
 
-function Food({name, picture, rating}){
-  return(
-    <div>
-      <h1>I Love {name}</h1>
-      <h4>{rating}/5.0</h4>
-      <img src={picture}></img>
-    </div>
-  );
-}
-
-// 타입, 변수가 맞는 지 확인하는 함수
-Food.propTypes = {
-  name: PropTypes.string.isRequired,
-  picture : PropTypes.string.isRequired,
-  rating : PropTypes.number
-};
-
-function App() {
-  return (
-    <div className="App">
-      {foodILike.map(a => (
-        <Food key={a.id} name={a.name} picture={a.image} rating={a.rating}/>
-      ))}
-    </div>
-  );
   
+  // 바꾸고 싶은 데이터를 state 안에 넣는다
+  state = {
+    count: 0
+  };
+
+  add = () => {
+    // setState를 호출하면 statpe를 refresh하고 render()를 호출해준다.
+    this.setState(current => ({count:current.count+1}))
+  };
+  minus = () => {
+    // this.setState({count:this.state.count-1}) : 잘 사용하지 않는다.
+    this.setState(current => ({count:current.count-1}))
+  };
+
+  render(){
+    return (
+      <div>
+        <h1>The number is : {this.state.count}</h1>
+        <button onClick={this.add}>Add</button>
+        <button onClick={this.minus}>Minus</button>
+      </div>
+    );
+  }
 }
 
 export default App;
