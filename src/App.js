@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from "prop-types";
+//import PropTypes from "prop-types";
 import axios from "axios";
 import Movie from "./Movie";
 import "./App.css";
@@ -20,27 +20,21 @@ class App extends React.Component{
   
   // 제일 먼저 실행되는 라이프 사이클
   componentDidMount(){
-    
     this.getMovies();
-    
-    // 3초 뒤 실행
-    //setTimeout(() => {
-      //this.setState({isLoading : false});
-    //}, 3000)
   }
 
   render(){
     const { isLoading, movies } = this.state;
     return (
-      <section class="container">
+      <section className="container">
         {isLoading ? 
           (
-            <div class="loader">
-              <span class="loader_text">Loading...</span>
+            <div className="loader">
+              <span className="loader_text">Loading...</span>
             </div>
           ) : (
-            <div class="movies">
-              {
+            <div className="movies">
+              { //배열이므로 {}를 추가해줘야한다.
                 movies.map(movie => 
                   <Movie
                     key={movie.id}
@@ -49,6 +43,7 @@ class App extends React.Component{
                     title={movie.title}
                     summary={movie.summary}
                     poster={movie.medium_cover_image}
+                    genres={movie.genres}
                   />
                 )
               }
