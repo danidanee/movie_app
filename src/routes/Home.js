@@ -13,7 +13,7 @@ class Home extends React.Component{
 
   // 비동기방식, 다 될때까지 기다린다.
   getMovies = async() => {
-    const {data: {data: {movies}}} = await axios.get("http://yts-proxy.now.sh/list_movies.json?sort_by=rating");
+    const {data: {data: {movies}}} = await axios.get("https://yts-proxy.now.sh/list_movies.json?sort_by=rating");
     this.setState({movies, isLoading:false});
   }
   
